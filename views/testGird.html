@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>testG</title>
+  <style>
+  .container{
+	display: grid;
+	grid-template-columns: 100px 1fr 100px;
+	grid-template-rows: 50px 300px 50px;
+}
+.header{
+	grid-area: 1 / 1 / 2 / 4;
+}
+.footer{
+	grid-area: 3 / 1 / 4 / 4;
+}
+.header{
+	background: lightsalmon;
+}
+.left{
+	background: lightseagreen;
+}
+.body{
+	background: lightslategray;
+}
+.right{
+	background: lightyellow;
+}
+.footer{
+	background: yellowgreen;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+      <div class="header">header</div>
+      <div class="left">left</div>
+      <div class="body">body</div>
+      <div class="right">right</div>
+      <div class="footer">footer</div>
+    </div>
+</body>
+</html>

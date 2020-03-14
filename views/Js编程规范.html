@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Js</title>
+</head>
+<style>
+</style>
+<body>
+  
+</body>
+<script>
+/* 编码细则 */
+/* 
+变量值的存储最好一直使用一种类型。
+例如：	var text = "test";
+	consolo.log(text);//test
+	text = 55;
+	consolo.log(text); //55
+虽然输出的text变量没有问题，弱类型语言允许这样修改，
+但若变量改变用同一种类型数据类型也利于后期维护。
+ */
+
+/* js高级 */
+/* 对象只是带有属性和方法的特殊数据类型。 */
+
+// ES6
+
+/* 
+js变量作用域问题：
+var		let		const
+例1：var tNum = 4; (是全局变量，属于window对象，可以通过window.tNum调用/访问) 
+		let tNum = 4; (同样是全局变量，但是不属于window对象，不能通过window.tNum访问)
+function myfunction () {
+	var num = 4		//这里函数里面声明的都是局部变量
+	let num1 = 4  
+}
+
+{
+	var num = 4 
+	let num1 = 4  
+}
+console.log(num,num1)	因为var声明的变量没有块作用域，
+						而let声明的变量有块作用域，所以num1不能被引用
+*/
+
+/* 例2：var tNum = 2 
+	var tNum = 4 
+	consolo.log(tNum)	//tNum为4 var声明的是全局变量全局都可以修改
+
+	let tNum = 2 
+	let tNum = 4 
+	console.log(tNum)  //报错，tNum已经被声明。但可以使用 tunm = 4改变其值 
+
+	var 声明的变量会变量提升
+	console.log(num)	//此处的num输出为undefined
+	var num = 4
+	console.log(num)	//报错
+	let num = 4 */
+
+	/* 
+	const 用于声明一个或多个常量，声明时必须进行初始化，且初始化后值不可再修改
+	const定义常量与使用let 定义的变量相似：
+
+		二者都是块级作用域
+		都不能和它所在作用域内的其他变量或函数拥有相同的名称
+		两者还有以下两点区别：
+
+		const声明的常量必须初始化，而let声明的变量不用
+		const 定义常量的值不能通过再赋值修改，也不能再次声明。而 let 定义的变量值可以修改。
+	
+	const值修改的办法
+	1.// 创建常量对象
+	const car = {type:"Fiat", model:"500", color:"white"}
+	car.color = red
+	car.owner = "Johnson"//添加元素
+	console.log(car.color,car.owner) //为red,Johnson
+	2.//创建常量数组
+	const cars = ["Saab", "Volvo", "BMW"]
+	cars[0] = "Toyota"
+	cars.push("Audi")
+	console.log(cars[0],cars[3]) //输出 Toyota Audi 
+	*/
+
+	/*
+		创建数组和对象都能够对const常量的值或属性进行修改
+		但是，无论是数组还是对象都不能对const重新赋值
+		这是不被允许的
+	*/
+
+	/* 
+		ES6中支持函数自带参数，如：
+		function myfunction (x,y=10) {
+			return x+y;
+		}
+		console.log(5,15) //输出20
+		为给入参数时为默认参数
+		console.log(5)		//输出15
+	*/
+
+</script>
+</html>

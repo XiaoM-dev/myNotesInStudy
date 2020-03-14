@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>网格布局</title>
+  <style>
+    /* 1.Grid 网格布局
+  display: line-grid//默认容器为块级，可改为行内元素
+ */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    width: 1000px;
+    height: 500px;
+    display: grid; /* 指定一个容器采用网格布局 */
+
+    grid-template-columns: 100px 100px 100px;
+    /* 定义每一列的宽高    */
+
+    /* grid-template-columns: repeat(1, 100px 80px 20px); */
+    /* repeat()接收2个参数 第一个是重复次数，第二个是要重复的值，也可以是某种重复模式 */
+
+    /* grid-template-columns: repeat(auto-fill, 100px); */
+    /* auto-fill 自动填充，填充尽可能多的单元格 */
+
+    /* grid-template-columns: 1fr 1260px minmax(100px,1fr); */
+    /* fr就是让每列/行按照比例进行划分 rows 没法使用0.5fr 
+      minmax(最小大小,最大大小), 还有auto自适应*/
+
+    grid-template-rows: 100px 100px 100px;
+    /* 定义每一行的宽高 */
+    
+    /* grid-gap: 10px 10px; */
+    /* 注意：网格布局每个格子可以看作一个盒子，且网格布局后该盒子变成IE盒子模型
+      即你的margin属性不再向外扩展而是和padding一样向内挤压盒子内容，减小盒子内容大小
+      所有我们调整   盒子间的间距   一般用grid-gap: 行间距, 列间距 */
+
+    /* grid-template-areas: "a,a,a"
+                        "b,b,b"
+                        "c,c,c "; */
+                            /* 分割区域 */
+    /* grid-auto-flow: row; */
+    /* 设定优先填充方式,此时为先填充行,但若元素空间大于余下控件会留出空格,后面小元素不补位 */
+
+    /* 填充规则,大块的元素先进行排列,然后再小元素排列 */
+    /* grid-auto-flow: row dense; */
+    /* 空出空间会被尽可能的填满,后面小元素会填空 */
+
+  /* 容器内容 */
+    /* justify-items: start | end | center | stretch; */
+    /* 设置单元格(所有)内容水平/垂直的对齐方式 stretch 拉伸填满 */
+    /* align-items: start | end | center | stretch; */
+    /* 合并的简写方法 */
+    /* place-items: <align-items> <justify-items>; */
+
+    /* justify-content: start | end | center | stretch | space-around | space-between | space-evenly;
+    align-content: start | end | center | stretch | space-around | space-between | space-evenly;   */
+    /* place-content: <align-content> <justify-content> */
+
+    /* grid-auto-columns: 50px; 
+    grid-auto-rows: 50px;  */
+    /* 设置超出(定义的行,列)部分的 行/列的宽高 */
+  }
+  .item {
+    text-align: center;
+    line-height: 100px;
+    border: 1px solid white;
+  }
+  .item1 {
+    background-color: #ef342a;
+    grid-column-start: 1; /* 元素开始的列位置 */
+    grid-column-end: 3; /* 元素结束的列位置 */
+
+    /* grid-column: 1/3 ;
+    grid-row:  / ; */
+    /* grid-column-start与grid-column-end的简写 */
+
+    /* grid-column-start: span 2; */
+    /* span(跨越) 表示跨越了2个网格 */
+
+    /* grid-area: e; */
+    /* 指定放在那个区域,区域是上面container中定义的 */
+    /* grid-area: 1 / 1 / 2 / 4; */
+    /* 参数：起始行/起始列/终止行/终止列 */
+
+    /* justify-self
+    align-self
+    place-self */
+    /* 和justify-items一样的用法但只作用于单个的项目 */
+  }
+
+  .item2 {
+    /* margin: 5px; */
+    background-color: #f68f26;
+  }
+
+  .item3 {
+    background-color: #4ba946;
+  }
+
+  .item4 {
+    background-color: #0376c2;
+  }
+
+  .item5 {
+    background-color: #c077af;
+  }
+
+  .item6 {
+    background-color: #f8d29d;
+  }
+
+  .item7 {
+    background-color: #b5a87f;
+  }
+
+  .item8 {
+    background-color: #d0e4a9;
+  }
+
+  .item9 {
+    background-color: #4dc7ec;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item3">3</div>
+    <div class="item item4">4</div>
+    <div class="item item5">5</div>
+    <div class="item item6">6</div>
+    <div class="item item7">7</div>
+    <div class="item item8">8</div>
+    <div class="item item9">9</div>
+  </div>
+</body>
+</html>

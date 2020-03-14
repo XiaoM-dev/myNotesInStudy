@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Js_animation</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .moveblock1 {
+      width: 100px;
+      height: 100px;
+      /* border-radius: 50%; */
+      background-color: black;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .moveblock2 {
+      width: 150px;
+      height: 150px;
+      /* border-radius: 50%; */
+      background-color: green;
+      position: absolute;
+      top: 350px;
+      left: 350px;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="moveblock1"></div>
+  <div class="moveblock2"></div>
+  
+  <script>
+      var moveblock1 = document.querySelector('.moveblock1')
+      var moveblock2 = document.querySelector('.moveblock2')
+      // console.log(moveblock)
+      /* 产生随机速度 */
+      moveblock1.speedX = parseInt(Math.random()*10);
+      moveblock1.speedY = parseInt(Math.random()*10);
+      moveblock2.speedX = parseInt(Math.random()*10);
+      moveblock2.speedY = parseInt(Math.random()*10);
+
+      function move(el) {
+        let curleft = parseInt(getComputedStyle(el).left);
+        let curtop = parseInt(getComputedStyle(el).top);
+        check_body_collsion(el)
+        if (check_block_collsion(moveblock1, moveblock2)){
+          //碰撞后要执行的操作
+          let temp1 = moveblock1.speedX;
+          let temp2 = moveblock1.speedY;
+          moveblock1.speedX = moveblock2.speedX;
+          moveblock1.speedY = moveblock2.speedY;
+          moveblock2.speedX = temp1;
+          moveblock2.speedY = temp2;
+        }
+        let left = curleft + el.speedX;
+        let top = curtop + el.speedY;
+        el.style.left = left + 'px';
+        el.style.top = top + 'px';
+      }
+// 边检查
+      function check_body_collsion(el) {
+        let style = getComputedStyle(el)
+        let left = parseInt(style.left)
+        let top = parseInt(style.top)
+        let width = parseInt(style.width)
+        let height = parseInt(style.height);
+
+        if(left < 0){
+          left = 0;
+          el.speedX *= -1;
+        }
+
+        if(left > window.innerWidth - width){
+          left = window.innerWidth -width;
+          el.speedX *= -1;
+        }
+
+        if(top < 0){
+          top = 0;
+          el.speedY *= -1;
+        }
+
+        if(top > window.innerHeight - height){
+          top = window.innerHeight - height;
+          el.speedY *= -1;
+        }
+        // console.log(height,el.speedY)
+        el.style.left = left + 'px';
+        el.style.top = top + 'px';
+      }
+// 块儿检查
+      function check_block_collsion(block1, block2) {
+        let left1 = parseInt(getComputedStyle(block1).left)
+        let left2 = parseInt(getComputedStyle(block2).left)
+
+        let top1 = parseInt(getComputedStyle(block1).top)
+        let top2 = parseInt(getComputedStyle(block2).top)
+
+        let width1 = parseInt(getComputedStyle(block1).width)
+        let width2 = parseInt(getComputedStyle(block2).width)
+        // console.log(width1, width2)
+
+        let height1 = parseInt(getComputedStyle(block1).height)
+        let height2 = parseInt(getComputedStyle(block2).height)
+
+        let curwidth = Math.abs((width1/2 + left1) - (width2/2 + left2))
+        let curheight = Math.abs((height1/2 + top1) - (height2/2 + top2))
+        console.log(curwidth, curheight)
+
+        if(curwidth < (width1 + width2)/2 && curheight < (height1 + height2)/2){
+          return true;
+        }else{
+          return false;
+        }
+      }
+
+      setInterval(function() {
+        move(moveblock1)
+        move(moveblock2)
+      },20)
+    </script>
+</body>
+</html>
