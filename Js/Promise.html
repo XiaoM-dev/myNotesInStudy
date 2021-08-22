@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise</title>
+</head>
+<body>
+  
+</body>
+<script>
+  const PENDING = 'pending'
+  const RESOLVED = 'resolved'
+  const REJECTED = 'rejected'
+  
+  function MyPromise(fn) {
+    const that = this
+    that.state = PENDING
+    that.value = null
+    that.resolvedCallbacks = []
+    that.rejectedCallbacks = []
+
+    
+    function resolve(value) {
+      if (that.state === PENDING) {
+        that.state = RESOLVED
+        that.value = value
+        that.resolvedCallbacks.map(cb => cb(that.value))
+      }
+    }
+
+    function reject(value) {
+      if (that.state === PENDING) {
+        that.state = REJECTED
+        that.value = value
+        that.rejectedCallbacks.map(cb => cb(that.value))
+      }
+    }
+
+    try {
+      fn(resolve, reject)
+    } catch (e) {
+      reject(e)
+    }
+  }
+
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>simplePoller</title>
+</head>
+<body>
+  
+</body>
+<script>
+
+  const simplePoller = (queryFn, callback) => {
+    let count = 0;
+    const repeatFun = (funVal = false) => {
+      if(funVal) return  callback();
+
+      setTimeout(() => {
+        let val = queryFn(count);
+        repeatFun(val);
+        console.log(val, 1000 * (count === 0 ? 1 : Math.pow(1.5, count)),  'queryFn(count)');
+        count ++;
+      }, 1000 * (count === 0 ? 1 : Math.pow(1.5, count)))
+    }
+    
+    repeatFun();
+  }
+
+  const queryFn = (count) => {
+    return count === 5;
+  }
+
+  const callback = () => {
+    console.log('return callback');
+  }
+
+  simplePoller(queryFn, callback);
+  setTimeout(() => {
+    simplePoller(queryFn, callback);
+  }, 1000)
+</script>
+</html>

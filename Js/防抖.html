@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<button id="debounce">点击防抖</button>
+</body>
+<script>
+	const outSomethings = (e) => {
+		console.log(this, e, '输出');
+	}
+
+	const debounce = (fn, delayTime) => {
+		console.log(this, 'this');
+		let time = undefined;
+		return (args) => {
+			clearTimeout(time);
+			time = setTimeout(() => {
+				fn.call(this, args);
+			}, delayTime)
+		}
+	}
+
+	window.onload = () => {
+		let debounceEle = document.querySelector('#debounce');
+		debounceEle.addEventListener('click', debounce(outSomethings, 1000))
+		// debounceEle.addEventListener('click', outSomethings)
+	}
+</script>
+</html>
